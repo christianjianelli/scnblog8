@@ -1,0 +1,33 @@
+.glyphicon-user {
+	margin-top: 10px;
+	margin-right: 5px;
+}
+
+.css-form input.ng-invalid.ng-touched {
+    border-color: #FA787E;
+}
+
+#overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    z-index: 10;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+#ajax-loader{
+    margin-top: 25%;
+}
+
+.green{
+    color: #5cb85c;
+}
+
+.green:hover { 
+    color: #449d44;
+}

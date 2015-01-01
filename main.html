@@ -1,0 +1,46 @@
+<!-- Overlay to display the loading indicator -->    
+<div id="overlay" ng-show="$parent.data.loading"><i id="ajax-loader" class="fa fa-3x fa-spinner fa-spin"></i></div>
+<h3>Add Contact</h3>
+<div class="row" ng-hide="data.showPaneAddContact">
+	<div class="col-xs-12">
+		<a ng-click="data.showPaneAddContact=!data.showPaneAddContact"><i class="fa fa-2x fa-plus-square"></i></a>
+	</div>
+</div>
+<div class="row" ng-show="data.showPaneAddContact">
+	<div class="col-xs-12">
+		<a ng-click="data.showPaneAddContact=!data.showPaneAddContact"><i class="fa fa-2x fa-minus-square"></i></a>
+	</div>	
+</div>
+<form ng-show="data.showPaneAddContact" name="contactForm" novalidate class="css-form" role="form" ng-submit="addContact(contactForm)">
+	<h5 ng-show="$parent.data.message" class="text-center">{{$parent.data.message}}</h5>
+	<fieldset>
+		<div class="row">
+			<div class="form-group col-sm-12 col-sm-3">
+				<label for="email">Email address</label>
+				<input type="email" class="form-control" id="email" placeholder="Enter e-mail" ng-model="data.contact.email" ng-maxlength="30" required>
+			</div>
+			<div class="form-group col-sm-12 col-sm-3">
+				<label for="firstname">First Name</label>
+				<input type="text" class="form-control" id="firstname" placeholder="Enter first name" ng-model="data.contact.firstname" ng-maxlength="30" required>
+			</div>
+			<div class="form-group col-sm-12 col-sm-3">
+				<label for="lastname">Last Name</label>
+				<input type="text" class="form-control" id="lastname" placeholder="Enter last name" ng-model="data.contact.lastname" ng-maxlength="30" required>
+			</div>
+			<div class="form-group col-sm-12 col-md-3">
+				<label for="phone">Phone</label>
+				<input type="tel" class="form-control" id="phone" placeholder="Enter phone" ng-model="data.contact.phone" ng-pattern="/^[-+.() ,0-9]+$/" ng-maxlength="30" required>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Add Contact</button>
+		<button type="button" class="btn btn-default" ng-click="resetForm(contactForm)">Reset</button>
+		<button type="button" class="btn btn-default" ng-click="data.showPaneAddContact=!data.showPaneAddContact">Hide</button>
+	</fieldset>
+</form>
+<h3>Contact List</h3>
+<div class="list-group">
+	<a href="#/" class="list-group-item" ng-show="isEmpty()">No Contacts</a>
+    <a href="#/contact/{{contact.email}}" class="list-group-item repeated-item" ng-repeat="contact in data.contacts | orderBy:'+firstname'">
+        <p><span class="glyphicon glyphicon-user"></span> {{contact.firstname}} {{contact.lastname}}</p>
+    </a>
+</div>
